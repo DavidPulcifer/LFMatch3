@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4108a5b9948b55419dcea55e7407d9c, type: 3}
+  m_Name: OriginalBoard
+  m_EditorClassIdentifier: 
+  boardName: Original Board
+  boardSize: {x: 7, y: 7}
+  borderSize: 1
+  tilePrefabNormal: {fileID: 7444647231431527738, guid: 8682f6cf6a940d445af4dd4acbdad2a0,
+    type: 3}
+  tilePrefabObstacle: {fileID: 4642989934316966259, guid: f14f533f437d5b340862ba0302f7f731,
+    type: 3}
+  tilePrefabBrakable1: {fileID: 4686796004517764778, guid: 0a7d5ad9c3719de4199bdd5edca80de1,
+    type: 3}
+  tilePrefabBrakable2: {fileID: 5527580870935553206, guid: 91ac7f3e66dfc544688cfbeae7351272,
+    type: 3}
+  startingTiles: []
+  startingGamePieces: []
+  gamePiecePrefabs:
+  - {fileID: 2852571201523742204, guid: 8a3ceec2007b80743869c77673f949c2, type: 3}
+  - {fileID: 4010043811517303613, guid: 1a133b7c7f3b0dd4797f67dd043b6d3a, type: 3}
+  - {fileID: 1732132001527020432, guid: 50686b445419b9b4cb7c21145ba262a0, type: 3}
+  - {fileID: 1950576931367904385, guid: 81906b8fecc96414bacb0df00541faba, type: 3}
+  - {fileID: 8501804075697822565, guid: 80f7ff7be82a05e4eb32389c1285a5fd, type: 3}
+  adjacentBombPrefabs:
+  - {fileID: 1011254053392170434, guid: 82268e31f6d086644983ee8d29b40bb1, type: 3}
+  - {fileID: 1011254053392170434, guid: d7f413dda786c664cb0df946153ce94c, type: 3}
+  - {fileID: 1011254053392170434, guid: 62b86db000b886c43886cf003614968c, type: 3}
+  - {fileID: 1011254053392170434, guid: f1b6f53be698da547a87513af622ee1e, type: 3}
+  - {fileID: 1011254053392170434, guid: bb57f682abe0dfe45bb7d7d30fa28aff, type: 3}
+  columnBombPrefabs:
+  - {fileID: 9177383472373373346, guid: 7be8995b0e6d46144aa4ed4f7c7ada1d, type: 3}
+  - {fileID: 9177383472373373346, guid: 1245b959b999be24db592003c7d61bfd, type: 3}
+  - {fileID: 9177383472373373346, guid: 8dd9818066e5eb8409eb753cfbb66654, type: 3}
+  - {fileID: 9177383472373373346, guid: 4bf5330332ab3964589298fd534ae816, type: 3}
+  - {fileID: 9177383472373373346, guid: e30ca750d313d764886c37b1350514d5, type: 3}
+  rowBombPrefabs:
+  - {fileID: 3859521112444376464, guid: 6c034c34c9808cc439931a4eef642717, type: 3}
+  - {fileID: 3859521112444376464, guid: a8a194a24935f8d49b1919c1cb3718a9, type: 3}
+  - {fileID: 3859521112444376464, guid: 20924e051e21aaf4992b103882e592b4, type: 3}
+  - {fileID: 3859521112444376464, guid: f626b041859759a49aea38b8bcb4d8c3, type: 3}
+  - {fileID: 3859521112444376464, guid: 0ae6b23cf6d9be84a8bb77762b9a3f77, type: 3}
+  colorBombPrefab: {fileID: 8785654766021985562, guid: c6bd1bc066657d746ae8798951429f3f,
+    type: 3}
+  maxCollectibles: 3
+  chanceForCollectible: 0.1
+  collectiblePrefabs:
+  - {fileID: 3479513916677304736, guid: 301ef6d54358b324ba62e8939b0a2130, type: 3}
+  - {fileID: 3479513916677304736, guid: 5268b58fd4b4af047b213ef082e17ed8, type: 3}
