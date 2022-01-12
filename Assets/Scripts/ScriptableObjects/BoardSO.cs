@@ -11,6 +11,8 @@ public class BoardSO : ScriptableObject
     public Vector2Int boardSize;
     public int borderSize;
     public LevelCounter levelCounter;
+    public int[] scoreGoals = new int[3] { 1000, 2000, 3000 };
+    public PieceToCollect[] piecesToCollect;
 
     public GameObject tilePrefabNormal;
     public GameObject tilePrefabObstacle;
