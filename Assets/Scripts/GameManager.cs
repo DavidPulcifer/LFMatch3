@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(LevelGoal))]
+[RequireComponent(typeof(BoardGoal))]
 public class GameManager : Singleton<GameManager>
 {    
     Board m_board;
@@ -17,35 +16,39 @@ public class GameManager : Singleton<GameManager>
     bool m_isWinner = false;
     bool m_isReadyToReload = false;
 
-    
+    //LevelGoal m_levelGoal; - Level Goal
+    BoardGoal m_boardGoal;
+    public BoardGoal BoardGoal { get => m_boardGoal; }
 
-    LevelGoal m_levelGoal;
+    //LevelGoalTimed m_levelGoalTimed; - Level Goal
 
-    //LevelGoalTimed m_levelGoalTimed;
+    //LevelGoalCollected m_levelGoalCollected; - Level Goal
 
-    LevelGoalCollected m_levelGoalCollected;
-
-    public LevelGoal LevelGoal { get { return m_levelGoal; } }
+    //public LevelGoal LevelGoal { get { return m_levelGoal; } } - Level Goal
 
     public override void Awake()
     {
         base.Awake();
 
-        m_levelGoal = GetComponent<LevelGoal>();
+        //m_levelGoal = GetComponent<LevelGoal>(); - Level Goal
+        m_boardGoal = GetComponent<BoardGoal>();
+
         //m_levelGoalTimed = GetComponent<LevelGoalTimed>();
-        m_levelGoalCollected = GetComponent<LevelGoalCollected>();
+        //m_levelGoalCollected = GetComponent<LevelGoalCollected>(); - Level Goal
 
         m_board = FindObjectOfType<Board>().GetComponent<Board>();
-    }
 
-    // Start is called before the first frame update
+        
+    }
+        
     void Start()
     {
-        if(UIManager.Instance != null)
-        {            
+        if (UIManager.Instance != null)
+        {
             if (UIManager.Instance.scoreMeter != null)
             {
-                UIManager.Instance.scoreMeter.SetupStars(m_levelGoal);
+                //UIManager.Instance.scoreMeter.SetupStars(m_levelGoal); - Level Goal
+                UIManager.Instance.scoreMeter.SetupStars(m_boardGoal);
             }
 
             if (UIManager.Instance.levelNameText != null)
@@ -54,23 +57,23 @@ public class GameManager : Singleton<GameManager>
                 UIManager.Instance.levelNameText.text = scene.name;
             }
 
-            if (m_levelGoalCollected != null)
+            if (m_boardGoal.PiecesToCollect != null)
             {
                 UIManager.Instance.EnableCollectionGoalLayout(true);
-                UIManager.Instance.SetupCollectionGoalLayout(m_levelGoalCollected.collectionGoals);
+                UIManager.Instance.SetupCollectionGoalLayout(m_boardGoal.PiecesToCollect);
             }
             else
             {
                 UIManager.Instance.EnableCollectionGoalLayout(false);
             }
 
-            bool useTimer = (m_levelGoal.levelCounter == LevelCounter.Timer);
+            bool useTimer = (m_boardGoal.BoardCounter == BoardCounter.Timer);
 
             UIManager.Instance.EnableTimer(useTimer);
             UIManager.Instance.EnableMovesCounter(!useTimer);
-        }        
-
-        m_levelGoal.movesLeft++;
+        }
+        
+        m_boardGoal.MovesLeft++;
         UpdateMoves();
 
         StartCoroutine("ExecuteGameLoop");
@@ -78,13 +81,13 @@ public class GameManager : Singleton<GameManager>
 
     public void UpdateMoves()
     {
-        if(m_levelGoal.levelCounter == LevelCounter.Moves)
+        if(m_boardGoal.BoardCounter == BoardCounter.Moves)
         {
-            m_levelGoal.movesLeft--;
+            m_boardGoal.MovesLeft--;
 
             if (UIManager.Instance != null && UIManager.Instance.movesLeftText != null)
             {
-                UIManager.Instance.movesLeftText.text = m_levelGoal.movesLeft.ToString();
+                UIManager.Instance.movesLeftText.text = m_boardGoal.MovesLeft.ToString();
             }            
         }        
     }
@@ -109,19 +112,19 @@ public class GameManager : Singleton<GameManager>
             if (UIManager.Instance.messageWindow != null)
             {
                 UIManager.Instance.messageWindow.GetComponent<RectXformMover>().MoveOn();
-                int maxGoal = m_levelGoal.scoreGoals.Length - 1;
-                UIManager.Instance.messageWindow.ShowScoreMessage(m_levelGoal.scoreGoals[maxGoal]);
+                int maxGoal = m_boardGoal.ScoreGoals.Length - 1;
+                UIManager.Instance.messageWindow.ShowScoreMessage(m_boardGoal.ScoreGoals[maxGoal]);
 
-                if(m_levelGoal.levelCounter == LevelCounter.Timer)
+                if(m_boardGoal.BoardCounter == BoardCounter.Timer)
                 {
-                    UIManager.Instance.messageWindow.ShowTimedGoal(m_levelGoal.timeLeft);
+                    UIManager.Instance.messageWindow.ShowTimedGoal(m_boardGoal.TimeLeft);
                 }
                 else
                 {
-                    UIManager.Instance.messageWindow.ShowMovesGoal(m_levelGoal.movesLeft);
+                    UIManager.Instance.messageWindow.ShowMovesGoal(m_boardGoal.MovesLeft);
                 }
 
-                if(m_levelGoalCollected != null)
+                if(m_boardGoal.PiecesToCollect != null)
                 {
                     UIManager.Instance.messageWindow.ShowCollectionGoal(true);
 
@@ -129,7 +132,7 @@ public class GameManager : Singleton<GameManager>
 
                     if(goalLayout != null)
                     {
-                        UIManager.Instance.SetupCollectionGoalLayout(m_levelGoalCollected.collectionGoals, goalLayout, 100);
+                        UIManager.Instance.SetupCollectionGoalLayout(m_boardGoal.PiecesToCollect, goalLayout, 100);
                     }
                 }
             }
@@ -155,22 +158,22 @@ public class GameManager : Singleton<GameManager>
 
     IEnumerator PlayGameRoutine()
     {
-        if(m_levelGoal.levelCounter == LevelCounter.Timer)
+        if(m_boardGoal.BoardCounter == BoardCounter.Timer)
         {
-            m_levelGoal.StartCountdown();
+            m_boardGoal.StartCountdown();
         }
 
         while (!m_isGameOver)
         {
-            m_isGameOver = m_levelGoal.IsGameOver();
-            m_isWinner = m_levelGoal.IsWinner();
+            m_isGameOver = m_boardGoal.IsGameOver();
+            m_isWinner = m_boardGoal.IsWinner();
             yield return null;
         }        
     }
 
     IEnumerator WaitForBoardRoutine(float delay = 0f)
     {
-        if (m_levelGoal.levelCounter == LevelCounter.Timer && 
+        if (m_boardGoal.BoardCounter == BoardCounter.Timer && 
             UIManager.Instance != null && UIManager.Instance.timer != null)
         {
             if(UIManager.Instance.timer != null)
@@ -226,7 +229,7 @@ public class GameManager : Singleton<GameManager>
             UIManager.Instance.messageWindow.ShowCollectionGoal(false);
 
             string caption = "";
-            if(m_levelGoal.levelCounter == LevelCounter.Timer)
+            if(m_boardGoal.BoardCounter == BoardCounter.Timer)
             {
                 caption = "Out Of Time!";
             }
@@ -286,11 +289,11 @@ public class GameManager : Singleton<GameManager>
         if (ScoreManager.Instance != null)
         {
             ScoreManager.Instance.AddScore(piece.scoreValue * multiplier + bonus);
-            m_levelGoal.UpdateScoreStars(ScoreManager.Instance.CurrentScore);
+            m_boardGoal.UpdateScoreStars(ScoreManager.Instance.CurrentScore);
 
             if(UIManager.Instance != null && UIManager.Instance.scoreMeter != null)
             {
-                UIManager.Instance.scoreMeter.UpdateScoreMeter(ScoreManager.Instance.CurrentScore, m_levelGoal.scoreStars);
+                UIManager.Instance.scoreMeter.UpdateScoreMeter(ScoreManager.Instance.CurrentScore, m_boardGoal.ScoredStars);
             }
         }
 
@@ -302,15 +305,15 @@ public class GameManager : Singleton<GameManager>
 
     public void AddTime(int timeValue)
     {
-        if(m_levelGoal.levelCounter == LevelCounter.Timer)
+        if(m_boardGoal.BoardCounter == BoardCounter.Timer)
         {
-            m_levelGoal.AddTime(timeValue);
+            m_boardGoal.AddTime(timeValue);
         }
     }
 
     public void UpdateCollectionGoals(GamePiece pieceToCheck)
     {
-        if (m_levelGoalCollected == null) return;
-        m_levelGoalCollected.UpdateGoals(pieceToCheck);
+        if (m_boardGoal.PiecesToCollect == null) return;
+        m_boardGoal.UpdateGoals(pieceToCheck);
     }
 }

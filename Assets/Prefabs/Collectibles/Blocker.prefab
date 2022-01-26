@@ -46,6 +46,8 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -57,6 +59,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -95,6 +98,7 @@ MonoBehaviour:
   xIndex: 0
   yIndex: 0
   interpolation: 4
+  m_spriteRenderer: {fileID: 2474556212943609624}
   matchValue: 9
   scoreValue: 500
   clearSound: {fileID: 8300000, guid: b1e6e75baf8f04ae59f52e341161f1a9, type: 3}

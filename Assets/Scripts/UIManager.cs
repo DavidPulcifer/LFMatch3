@@ -34,22 +34,22 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-    public void SetupCollectionGoalLayout(CollectionGoal[] collectionGoals, GameObject goalLayout, int spacingWidth)
+    public void SetupCollectionGoalLayout(PieceToCollect[] piecesToCollect, GameObject goalLayout, int spacingWidth)
     {
-        if (goalLayout == null || collectionGoals == null || collectionGoals.Length == 0) return;
+        if (goalLayout == null || piecesToCollect == null || piecesToCollect.Length == 0) return;
 
         RectTransform rectXform = goalLayout.GetComponent<RectTransform>();
-        rectXform.sizeDelta = new Vector2(collectionGoals.Length * spacingWidth,
+        rectXform.sizeDelta = new Vector2(piecesToCollect.Length * spacingWidth,
                                                     rectXform.sizeDelta.y);
 
         CollectionGoalPanel[] panels = goalLayout.GetComponentsInChildren<CollectionGoalPanel>();
 
         for (int i = 0; i < panels.Length; i++)
         {
-            if (i < collectionGoals.Length && collectionGoals[i] != null)
+            if (i < piecesToCollect.Length && piecesToCollect[i] != null)
             {
                 panels[i].gameObject.SetActive(true);
-                panels[i].collectionGoal = collectionGoals[i];
+                panels[i].PieceToCollect = piecesToCollect[i];
                 panels[i].SetupPanel();
             }
             else
@@ -59,9 +59,9 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-    public void SetupCollectionGoalLayout(CollectionGoal[] collectionGoals)
+    public void SetupCollectionGoalLayout(PieceToCollect[] piecesToCollect)
     {
-        SetupCollectionGoalLayout(collectionGoals, collectionGoalLayout, collectionGoalBaseWidth);
+        SetupCollectionGoalLayout(piecesToCollect, collectionGoalLayout, collectionGoalBaseWidth);
     }
 
     public void UpdateCollectionGoalLayout(GameObject goalLayout)

@@ -11,8 +11,7 @@ public class CollectionGoal : MonoBehaviour
     public int numberToCollect = 5;
 
     SpriteRenderer m_spriteRenderer;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         if (prefabToCollect == null) return;

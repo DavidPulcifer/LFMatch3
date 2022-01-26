@@ -28,6 +28,10 @@ public class GamePiece : MonoBehaviour
 
     public InterpType interpolation = InterpType.SmootherStep;
 
+    [SerializeField] SpriteRenderer m_spriteRenderer;
+
+    public SpriteRenderer SpriteRenderer { get => m_spriteRenderer; }
+
     public enum InterpType
     {
         Linear,
@@ -41,31 +45,8 @@ public class GamePiece : MonoBehaviour
 
     public int scoreValue = 20;
 
-    public AudioClip clearSound;
-
+    public AudioClip clearSound;    
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        /*
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            Move((int)transform.position.x + 2, (int)transform.position.y, 0.5f);
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            Move((int)transform.position.x - 2, (int)transform.position.y, 0.5f);
-        }
-        */
-    }
-
     public void Init(Board board)
     {
         m_board = board;
@@ -142,19 +123,17 @@ public class GamePiece : MonoBehaviour
     {
         if (pieceToMatch == null) return;
 
-        SpriteRenderer rendererToChange = GetComponent<SpriteRenderer>();
-
         Color colorToMatch = Color.clear;
         
-        SpriteRenderer rendererToMatch = pieceToMatch.GetComponent<SpriteRenderer>();
+        SpriteRenderer rendererToMatch = pieceToMatch.SpriteRenderer;
 
-        if(rendererToMatch !=null && rendererToChange != null)
+        if(rendererToMatch !=null && m_spriteRenderer != null)
         {
             colorToMatch = rendererToMatch.color;            
         }
 
         matchValue = pieceToMatch.matchValue;
-        rendererToChange.color = colorToMatch;
+        m_spriteRenderer.color = colorToMatch;
     }
     
 }

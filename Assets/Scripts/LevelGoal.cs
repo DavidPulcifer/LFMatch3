@@ -8,14 +8,6 @@ public enum LevelCounter
     Moves
 }
 
-[System.Serializable]
-public class PieceToCollect
-{
-    public GamePiece pieceToCollect;
-    [Range(0, 50)]
-    public int numberToCollect;
-}
-
 public abstract class LevelGoal : Singleton<LevelGoal>
 {
     public int scoreStars = 0;

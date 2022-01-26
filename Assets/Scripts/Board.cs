@@ -14,9 +14,14 @@ public class StartingObject
 
 [RequireComponent(typeof(BoardDeadlock))]
 [RequireComponent(typeof(BoardShuffler))]
-public class Board : MonoBehaviour
-{    
+public class Board : Singleton<Board>
+{
     [SerializeField] BoardSO boardSO;
+
+    public BoardSO BoardSO
+    {
+        get { return boardSO; }
+    }
 
     int width;
     int height;
@@ -45,19 +50,19 @@ public class Board : MonoBehaviour
     public bool isRefilling = false;
 
     BoardDeadlock m_boardDeadlock;
-    BoardShuffler m_boardShuffler;    
-    
-    // Start is called before the first frame update
-    void Start()
+    BoardShuffler m_boardShuffler;
+
+    public override void Awake()
     {
+        base.Awake();
         width = boardSO.boardSize.x;
         height = boardSO.boardSize.y;
         m_allTiles = new Tile[width, height];
-        m_allGamePieces = new GamePiece[width, height];        
+        m_allGamePieces = new GamePiece[width, height];
         m_particleManager = GameObject.FindWithTag("ParticleManager").GetComponent<ParticleManager>();
         m_boardDeadlock = GetComponent<BoardDeadlock>();
-        m_boardShuffler = GetComponent<BoardShuffler>();
-    }
+        m_boardShuffler = GetComponent<BoardShuffler>();        
+    }   
 
     public void SetupBoard()
     {

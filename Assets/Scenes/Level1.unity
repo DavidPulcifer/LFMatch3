@@ -442,7 +442,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &124716746
 Transform:
   m_ObjectHideFlags: 0
@@ -1668,7 +1668,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c3142b4915c7b45bf52ebe2b4243fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectionGoal: {fileID: 0}
   numberLeftText: {fileID: 1408977457}
   prefabImage: {fileID: 902269563}
 --- !u!1 &451677397
@@ -1725,7 +1724,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c3142b4915c7b45bf52ebe2b4243fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectionGoal: {fileID: 0}
   numberLeftText: {fileID: 1704310626}
   prefabImage: {fileID: 183265202}
 --- !u!114 &451677400
@@ -19156,7 +19154,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c3142b4915c7b45bf52ebe2b4243fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectionGoal: {fileID: 0}
   numberLeftText: {fileID: 642989907}
   prefabImage: {fileID: 23204523}
 --- !u!224 &1092747635
@@ -19248,7 +19245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1145134517}
   - component: {fileID: 1145134518}
-  - component: {fileID: 1145134519}
+  - component: {fileID: 1145134520}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -19282,7 +19279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be723b152b310c4a8e11f4e0460c936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1145134519
+--- !u!114 &1145134520
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -19291,16 +19288,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1145134516}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3a28d47842b1db4a91de329d773b6a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 625b4e421b4b22e4a9cbc2c5cae82979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreStars: 0
-  scoreGoals: 10270000204e000030750000
-  movesLeft: 2
-  timeLeft: 60
-  levelCounter: 0
-  collectionGoals:
-  - {fileID: 226593599}
 --- !u!1 &1176610012
 GameObject:
   m_ObjectHideFlags: 0
@@ -19313,9 +19303,10 @@ GameObject:
   - component: {fileID: 1176610013}
   - component: {fileID: 1176610015}
   - component: {fileID: 1176610016}
+  - component: {fileID: 1176610017}
   m_Layer: 0
   m_Name: Board
-  m_TagString: Untagged
+  m_TagString: Board
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19373,6 +19364,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4144340b35644ff47bb7de4eaea0603d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1176610017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176610012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 625b4e421b4b22e4a9cbc2c5cae82979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1187484037
@@ -29552,7 +29555,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c3142b4915c7b45bf52ebe2b4243fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectionGoal: {fileID: 0}
   numberLeftText: {fileID: 79421915}
   prefabImage: {fileID: 2017310772}
 --- !u!114 &1349702181
@@ -40309,7 +40311,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c3142b4915c7b45bf52ebe2b4243fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectionGoal: {fileID: 0}
   numberLeftText: {fileID: 730378424}
   prefabImage: {fileID: 77933203}
 --- !u!114 &1594472608
@@ -40449,7 +40450,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c3142b4915c7b45bf52ebe2b4243fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectionGoal: {fileID: 0}
   numberLeftText: {fileID: 1573123014}
   prefabImage: {fileID: 1442576754}
 --- !u!114 &1650290185

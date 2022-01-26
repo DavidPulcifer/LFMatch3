@@ -8,7 +8,7 @@ public class ScoreMeter : MonoBehaviour
 {
     public Slider slider;
     public ScoreStar[] scoreStars = new ScoreStar[3];
-    LevelGoal m_levelGoal;
+    BoardGoal m_boardGoal;
     int m_maxScore;
 
     void Awake()
@@ -16,26 +16,26 @@ public class ScoreMeter : MonoBehaviour
         slider = GetComponent<Slider>();
     }
 
-    public void SetupStars(LevelGoal levelGoal)
+    public void SetupStars(BoardGoal boardGoal)
     {
-        if(levelGoal == null)
+        if(boardGoal == null)
         {
             Debug.LogWarning("SCOREMETER Invalid level goal.");
             return;
         }
 
-        m_levelGoal = levelGoal;
+        m_boardGoal = boardGoal;
 
-        m_maxScore = m_levelGoal.scoreGoals[m_levelGoal.scoreGoals.Length-1];
+        m_maxScore = m_boardGoal.ScoreGoals[m_boardGoal.ScoreGoals.Length-1];
 
         float sliderWidth = slider.GetComponent<RectTransform>().rect.width;
 
         if (m_maxScore <= 0) return;
 
-        for (int i = 0; i < levelGoal.scoreGoals.Length; i++)
+        for (int i = 0; i < boardGoal.ScoreGoals.Length; i++)
         {
             if (scoreStars[i] == null) continue;
-            float newX = (sliderWidth * levelGoal.scoreGoals[i] / m_maxScore) - (sliderWidth * 0.5f);
+            float newX = (sliderWidth * boardGoal.ScoreGoals[i] / m_maxScore) - (sliderWidth * 0.5f);
             RectTransform starRectXform = scoreStars[i].GetComponent<RectTransform>();
             if (starRectXform == null) continue;
             starRectXform.anchoredPosition = new Vector2(newX, starRectXform.anchoredPosition.y);
@@ -44,7 +44,7 @@ public class ScoreMeter : MonoBehaviour
 
     public void UpdateScoreMeter(int score, int starCount)
     {
-        if(m_levelGoal != null)
+        if(m_boardGoal != null)
         {
             slider.value = (float)score / (float)m_maxScore;
         }

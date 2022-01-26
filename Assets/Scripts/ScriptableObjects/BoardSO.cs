@@ -10,7 +10,9 @@ public class BoardSO : ScriptableObject
     [SerializeField] string boardName;
     public Vector2Int boardSize;
     public int borderSize;
-    public LevelCounter levelCounter;
+    public BoardCounter boardCounter;
+    public int startingTime = 60;
+    public int startingMoves = 30;
     public int[] scoreGoals = new int[3] { 1000, 2000, 3000 };
     public PieceToCollect[] piecesToCollect;
 

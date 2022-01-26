@@ -5,10 +5,13 @@ using UnityEngine.UI;
 
 public class CollectionGoalPanel : MonoBehaviour
 {
-    public CollectionGoal collectionGoal;
-
     public Text numberLeftText;
     public Image prefabImage;
+
+    PieceToCollect m_pieceToCollect;
+    public PieceToCollect PieceToCollect { get => m_pieceToCollect; set => m_pieceToCollect = value; }
+
+    BoardGoal m_boardGoal;
 
     // Start is called before the first frame update
     void Start()
@@ -18,21 +21,22 @@ public class CollectionGoalPanel : MonoBehaviour
 
     public void SetupPanel()
     {
-        if (collectionGoal == null || numberLeftText == null || prefabImage == null) return;
+        if (m_pieceToCollect == null || numberLeftText == null || prefabImage == null) return;
 
-        SpriteRenderer prefabSprite = collectionGoal.prefabToCollect.GetComponent<SpriteRenderer>();
-        if(prefabSprite != null)
+        SpriteRenderer pieceSprite = m_pieceToCollect.pieceToCollect.SpriteRenderer;
+
+        if(pieceSprite != null)
         {
-            prefabImage.sprite = prefabSprite.sprite;
-            prefabImage.color = prefabSprite.color;
+            prefabImage.sprite = pieceSprite.sprite;
+            prefabImage.color = pieceSprite.color;
         }        
-        numberLeftText.text = collectionGoal.numberToCollect.ToString();
+        numberLeftText.text = m_pieceToCollect.numberToCollect.ToString();
     }
 
     public void UpdatePanel()
     {
-        if (collectionGoal == null || numberLeftText == null) return;
+        if (m_pieceToCollect == null || numberLeftText == null) return;
 
-        numberLeftText.text = collectionGoal.numberToCollect.ToString();
+        numberLeftText.text = m_pieceToCollect.numberToCollect.ToString();
     }
 }
