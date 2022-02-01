@@ -58,12 +58,19 @@ public class BoardGoal : MonoBehaviour
         m_boardSO = GameObject.FindWithTag("Board").GetComponent<Board>().BoardSO;
         if(m_boardSO != null)
         {
-            m_scoreGoals = m_boardSO.scoreGoals;
-            m_movesLeft = m_boardSO.startingMoves;
-            m_timeLeft = m_boardSO.startingTime;
-            m_boardCounter = m_boardSO.boardCounter;
-            m_piecesToCollect = m_boardSO.piecesToCollect;
-        }
+            m_scoreGoals = m_boardSO.ScoreGoals;
+            m_movesLeft = m_boardSO.StartingMoves;
+            m_timeLeft = m_boardSO.StartingTime;
+            m_boardCounter = m_boardSO.BoardCounter;
+            System.Array.Resize(ref m_piecesToCollect, m_boardSO.PiecesToCollect.Length);
+            //m_piecesToCollect = new List<PieceToCollect>(m_boardSO.PiecesToCollect).ToArray();
+            for (int i = 0; i < m_boardSO.PiecesToCollect.Length; i++)
+            {
+                m_piecesToCollect[i] = new PieceToCollect();
+                m_piecesToCollect[i].pieceToCollect = m_boardSO.PiecesToCollect[i].pieceToCollect;
+                m_piecesToCollect[i].numberToCollect = m_boardSO.PiecesToCollect[i].numberToCollect;
+            }
+        }        
 
         if(m_piecesToCollect != null && m_piecesToCollect.Length > 0)
         {

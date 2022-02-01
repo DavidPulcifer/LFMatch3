@@ -55,8 +55,8 @@ public class Board : Singleton<Board>
     public override void Awake()
     {
         base.Awake();
-        width = boardSO.boardSize.x;
-        height = boardSO.boardSize.y;
+        width = boardSO.BoardSize.x;
+        height = boardSO.BoardSize.y;
         m_allTiles = new Tile[width, height];
         m_allGamePieces = new GamePiece[width, height];
         m_particleManager = GameObject.FindWithTag("ParticleManager").GetComponent<ParticleManager>();
@@ -131,13 +131,13 @@ public class Board : Singleton<Board>
         if (pieceToReplace == null) return;
 
         ClearPieceAt(x, y);
-        GameObject bombObject = MakeBomb(boardSO.colorBombPrefab, x, y);
+        GameObject bombObject = MakeBomb(boardSO.ColorBombPrefab, x, y);
         ActivateBomb(bombObject);        
     }
 
     void SetupTiles()
     {
-        foreach (StartingObject startingTile in boardSO.startingTiles)
+        foreach (StartingObject startingTile in boardSO.StartingTiles)
         {
             if (startingTile == null) continue;
             
@@ -150,7 +150,7 @@ public class Board : Singleton<Board>
             {
                 if(m_allTiles[x,y] == null)
                 {
-                    MakeTile(boardSO.tilePrefabNormal, x, y);
+                    MakeTile(boardSO.TilePrefabNormal, x, y);
                 }                
             }
         }
@@ -158,7 +158,7 @@ public class Board : Singleton<Board>
 
     void SetupGamePieces()
     {
-        foreach (StartingObject sPiece in boardSO.startingGamePieces)
+        foreach (StartingObject sPiece in boardSO.StartingGamePieces)
         {
             if (sPiece == null) continue;
 
@@ -173,9 +173,9 @@ public class Board : Singleton<Board>
 
         float aspectRatio = (float)Screen.width / (float)Screen.height;
 
-        float verticalSize = (float)height / 2f + (float)boardSO.borderSize;
+        float verticalSize = (float)height / 2f + (float)boardSO.Bordersize;
 
-        float horizontalSize = ((float)width / 2f + (float)boardSO.borderSize) / aspectRatio;
+        float horizontalSize = ((float)width / 2f + (float)boardSO.Bordersize) / aspectRatio;
 
         Camera.main.orthographicSize = (verticalSize > horizontalSize) ? verticalSize : horizontalSize;
     }
@@ -192,12 +192,12 @@ public class Board : Singleton<Board>
 
     GameObject GetRandomGamePiece()
     {
-        return GetRandomObject(boardSO.gamePiecePrefabs);
+        return GetRandomObject(boardSO.GamePiecePrefabs);
     }
 
     GameObject GetRandomCollectible()
     {
-        return GetRandomObject(boardSO.collectiblePrefabs);
+        return GetRandomObject(boardSO.CollectiblePrefabs);
     }
 
     public void PlaceGamePiece(GamePiece gamePiece, int x, int y)
@@ -1150,20 +1150,20 @@ public class Board : Singleton<Board>
         
         if (gamePieces.Count >= 5 && !IsCornerMatch(gamePieces))
         {
-            if (boardSO.colorBombPrefab == null) return null;
+            if (boardSO.ColorBombPrefab == null) return null;
 
-            return MakeBomb(boardSO.colorBombPrefab, x, y);
+            return MakeBomb(boardSO.ColorBombPrefab, x, y);
         }
         else if (IsCornerMatch(gamePieces))
         {
-            GameObject adjacentBomb = FindGamePieceByMatchValue(boardSO.adjacentBombPrefabs, matchValue);
+            GameObject adjacentBomb = FindGamePieceByMatchValue(boardSO.AdjacentBombPrefabs, matchValue);
             if (adjacentBomb == null) return null;
 
             return MakeBomb(adjacentBomb, x, y);
         }
         else if(swapDirection.x != 0)
         {
-            GameObject rowBomb = FindGamePieceByMatchValue(boardSO.rowBombPrefabs, matchValue);
+            GameObject rowBomb = FindGamePieceByMatchValue(boardSO.RowBombPrefabs, matchValue);
 
             if (rowBomb == null) return null;            
 
@@ -1171,7 +1171,7 @@ public class Board : Singleton<Board>
         }
         else
         {
-            GameObject columnBomb = FindGamePieceByMatchValue(boardSO.columnBombPrefabs, matchValue);
+            GameObject columnBomb = FindGamePieceByMatchValue(boardSO.ColumnBombPrefabs, matchValue);
 
             if (columnBomb == null) return null;            
 
@@ -1252,9 +1252,9 @@ public class Board : Singleton<Board>
 
     bool CanAddCollectible()
     {
-        return (Random.value <= boardSO.chanceForCollectible 
-            && boardSO.collectiblePrefabs.Length > 0 
-            && collectibleCount < boardSO.maxCollectibles);
+        return (Random.value <= boardSO.ChanceForCollectible 
+            && boardSO.CollectiblePrefabs.Length > 0 
+            && collectibleCount < boardSO.MaxCollectibles);
     }
 
     List<GamePiece> RemoveCollectibles(List<GamePiece> bombedPieces)
