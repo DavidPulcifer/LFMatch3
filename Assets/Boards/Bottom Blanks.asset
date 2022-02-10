@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4108a5b9948b55419dcea55e7407d9c, type: 3}
-  m_Name: BasicBoard
+  m_Name: Bottom Blanks
   m_EditorClassIdentifier: 
   boardName: Basic Board
   boardSize: {x: 7, y: 9}
@@ -19,10 +19,7 @@ MonoBehaviour:
   startingTime: 60
   startingMoves: 30
   scoreGoals: e8030000d0070000b80b0000
-  piecesToCollect:
-  - pieceToCollect: {fileID: 331961940123403714, guid: 1a133b7c7f3b0dd4797f67dd043b6d3a,
-      type: 3}
-    numberToCollect: 5
+  piecesToCollect: []
   tilePrefabNormal: {fileID: 7444647231431527738, guid: 8682f6cf6a940d445af4dd4acbdad2a0,
     type: 3}
   tilePrefabObstacle: {fileID: 4642989934316966259, guid: f14f533f437d5b340862ba0302f7f731,
@@ -31,7 +28,32 @@ MonoBehaviour:
     type: 3}
   tilePrefabBrakable2: {fileID: 5527580870935553206, guid: 91ac7f3e66dfc544688cfbeae7351272,
     type: 3}
-  startingTiles: []
+  startingTiles:
+  - prefab: {fileID: 4642989934316966259, guid: f14f533f437d5b340862ba0302f7f731,
+      type: 3}
+    x: 0
+    y: 0
+    z: 0
+  - prefab: {fileID: 4642989934316966259, guid: f14f533f437d5b340862ba0302f7f731,
+      type: 3}
+    x: 1
+    y: 0
+    z: 0
+  - prefab: {fileID: 4642989934316966259, guid: f14f533f437d5b340862ba0302f7f731,
+      type: 3}
+    x: 2
+    y: 0
+    z: 0
+  - prefab: {fileID: 4642989934316966259, guid: f14f533f437d5b340862ba0302f7f731,
+      type: 3}
+    x: 3
+    y: 0
+    z: 0
+  - prefab: {fileID: 4642989934316966259, guid: f14f533f437d5b340862ba0302f7f731,
+      type: 3}
+    x: 4
+    y: 0
+    z: 0
   startingGamePieces: []
   gamePiecePrefabs:
   - {fileID: 2852571201523742204, guid: 8a3ceec2007b80743869c77673f949c2, type: 3}

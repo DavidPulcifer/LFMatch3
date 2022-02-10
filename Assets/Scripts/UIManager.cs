@@ -36,7 +36,11 @@ public class UIManager : Singleton<UIManager>
 
     public void SetupCollectionGoalLayout(PieceToCollect[] piecesToCollect, GameObject goalLayout, int spacingWidth)
     {
-        if (goalLayout == null || piecesToCollect == null || piecesToCollect.Length == 0) return;
+        if (goalLayout == null || piecesToCollect == null || piecesToCollect.Length == 0)
+        {
+            collectionGoalLayout.SetActive(false);
+            return;
+        }
 
         RectTransform rectXform = goalLayout.GetComponent<RectTransform>();
         rectXform.sizeDelta = new Vector2(piecesToCollect.Length * spacingWidth,

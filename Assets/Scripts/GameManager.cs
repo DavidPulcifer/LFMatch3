@@ -126,7 +126,14 @@ public class GameManager : Singleton<GameManager>
 
                 if(m_boardGoal.PiecesToCollect != null)
                 {
-                    UIManager.Instance.messageWindow.ShowCollectionGoal(true);
+                    if (m_boardGoal.PiecesToCollect.Length == 0)
+                    {
+                        UIManager.Instance.messageWindow.ShowCollectionGoal(false);
+                    }
+                    else
+                    {
+                        UIManager.Instance.messageWindow.ShowCollectionGoal(true);
+                    }                    
 
                     GameObject goalLayout = UIManager.Instance.messageWindow.collectionGoalLayout;
 
@@ -134,7 +141,7 @@ public class GameManager : Singleton<GameManager>
                     {
                         UIManager.Instance.SetupCollectionGoalLayout(m_boardGoal.PiecesToCollect, goalLayout, 100);
                     }
-                }
+                }                
             }
         }        
 

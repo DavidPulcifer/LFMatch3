@@ -109,6 +109,7 @@ public class MessageWindow : MonoBehaviour
 
     public void ShowCollectionGoal(bool state = true)
     {
+        Debug.Log(state);
         if(collectionGoalLayout != null)
         {
             collectionGoalLayout.SetActive(state);
