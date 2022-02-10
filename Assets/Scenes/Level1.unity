@@ -19242,7 +19242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7018abd6f6e8ba4468b8648e5ffdbf13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardSO: {fileID: 11400000, guid: da79bf1b44ae3a142b6fbaf6a62b9398, type: 2}
+  boardSO: {fileID: 11400000, guid: f760bff302e2aa043b0cef53fed4cc70, type: 2}
   swapTime: 0.25
   fillYOffset: 10
   fillMoveTime: 0.5

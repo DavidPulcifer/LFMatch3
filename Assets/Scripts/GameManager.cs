@@ -52,9 +52,8 @@ public class GameManager : Singleton<GameManager>
             }
 
             if (UIManager.Instance.levelNameText != null)
-            {
-                Scene scene = SceneManager.GetActiveScene();
-                UIManager.Instance.levelNameText.text = scene.name;
+            {               
+                UIManager.Instance.levelNameText.text = m_board.BoardSO.BoardName;
             }
 
             if (m_boardGoal.PiecesToCollect != null)
